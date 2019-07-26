@@ -1,0 +1,27 @@
+package Objects;
+
+import java.util.ArrayList;
+
+public class Student {
+    private ArrayList<Course> courses;
+    private int id;
+
+    public Student(Course course, int id) {
+        this.id = id;
+        courses = new ArrayList<>();
+        courses.add(course);
+    }
+
+    public void bookCourse(Course course) {
+        courses.add(course);
+        School.makeBooking(this, course);
+    }
+
+    public ArrayList<Course> getCourses() {
+        return courses;
+    }
+
+    public int getId() {
+        return id;
+    }
+}
