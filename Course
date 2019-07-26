@@ -1,0 +1,27 @@
+package Objects;
+
+import java.util.ArrayList;
+
+public class Course {
+    private ArrayList<Student> students;
+    private String name;
+
+    public Course(Student student, String name) {
+        this.name = name;
+        students = new ArrayList<>();
+        students.add(student);
+    }
+
+    public void addStudent(Student student) {
+        students.add(student);
+    }
+
+    public ArrayList<Student> getStudents() {
+        return students;
+    }
+
+    @Override
+    public String toString() {
+        return name;
+    }
+}
