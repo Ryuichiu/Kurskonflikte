@@ -1,0 +1,40 @@
+import java.util.*;
+
+public class Main {
+    private static List<String> students;
+    private static Map<String, List<String>> studentCourses;
+    private static List<String> courses;
+    private static Map<String, List<String>> courseStudents;
+
+    public static void main(String[] args) {
+        students = new ArrayList<>();
+        studentCourses = new HashMap<>();
+        courses = new ArrayList<>();
+        courseStudents = new HashMap<>();
+
+        for (int i = 'A'; i <= 'Z'; i++) {
+            students.add(String.valueOf((char)i));
+            courses.add(String.valueOf((char)i + 0x20)); //complementary letters always exactly 2 rows far from each other
+        }
+        
+        Random rnd = new Random();
+
+        for (String student : students) {
+            List<String> currentStudentCourses = new ArrayList<>();
+            Collections.shuffle(courses);
+            for (int j = rnd.nextInt(courses.size()); j >= 0; j--) {
+                currentStudentCourses.add(courses.get(j));
+            }
+            studentCourses.put(student, currentStudentCourses);
+        }
+        
+        List<String> currentStudents = new ArrayList<>();
+        for (String student : students) {
+            List<String> currentStudentCourses = studentCourses.get(student);
+            
+            for (String course : currentStudentCourses) {
+                currentStudents.add(students.get(students.indexOf(student)));
+            }
+        }
+    }
+}
